@@ -1,35 +1,6 @@
 import React from 'react';
 import './app.css';
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
-
-import {
-  GridContextProvider,
-  GridDropZone,
-  GridItem,
-  swap
-} from "react-grid-dnd";
+import {GridContextProvider,GridDropZone, GridItem, swap} from "react-grid-dnd";
  
 function Example() {
   const [items, setItems] = React.useState([1, 2, 3, 4, 5, 6, 7, 8]); // supply your own state
@@ -43,7 +14,6 @@ function Example() {
  
   return (
     <div>
-      <h1 className='text-on-background'>Bookmarks</h1>
       <ul className='tool-bar'>
       <li className='tool-item rearrange-button'>Rearrange</li>
       <li className='tool-item delete-button'>Delete</li>
@@ -51,8 +21,10 @@ function Example() {
       <li className='tool-item add-button'>Add</li>
       <li className='tool-item settings-button'>Settings</li>
       </ul>
+      <br></br><br></br><br></br><br></br>
+      <h1 className='text-on-background'>Bookmarks</h1>
     <GridContextProvider onChange={onChange} style={{cursor: 'default'}}>
-      <br></br><br></br><br></br><br></br><br></br>
+      <br></br>
       <GridDropZone
         id="items"
         boxesPerRow={2}
