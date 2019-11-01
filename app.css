@@ -1,0 +1,38 @@
+body{background-color:rgb(20, 203, 244); margin-left: 2%; margin-right: 2%;}
+.tool-bar{list-style-type: none; margin: 0;padding: 0; width: 100%; display: inline-block;
+  text-align: center;}
+.tool-item{display: inline-block; padding: 8px 16px; text-decoration: none; 
+ border: 1.1px; border-style: solid; border-radius: 15px; text-align: center;
+margin-left: 2%; margin-right: 2%; color:white;}
+.tool-item:hover{background-color:white;}
+ .rearrange-button{background-color: rgb(66, 0, 94);}
+ .delete-button{background-color: rgb(154, 15, 15)}
+ .edit-button{background-color: rgb(9, 87, 9)}
+ .add-button{background-color: rgb(160, 88, 0)}
+ .settings-button{background-color: rgb(106, 94, 0)}
+ .rearrange-button:hover{color: rgb(66, 0, 94);}
+ .delete-button:hover{color: rgb(154, 15, 15)}
+ .edit-button:hover{color: rgb(9, 87, 9)}
+ .add-button:hover{color: rgb(160, 88, 0)}
+ .settings-button:hover{color: rgb(106, 94, 0)}
+.link-button{background-color: aqua; color:rgb(68, 39, 3); text-decoration: none;
+    border-radius: 10px;}
+.link-button:hover{background-color: rgb(0, 8, 255);color:white;}
+.text-on-background{color:rgb(68, 39, 3); line-height: 30px;}
+.heading-color{color:rgb(68, 39, 3)}
+.h3-size{font-size: 18.72px;}
+.hide-for-not-small{display: none;}
+@media (prefers-color-scheme: light) {
+  .link-button{background-color: aqua; color:rgb(68, 39, 3);}
+  .heading-color{color:rgb(48, 27, 2)}
+  .text-on-background{color:rgb(68, 39, 3);}
+  .text-on-background{color:rgb(68, 39, 3);}
+  .heading-color{color:rgb(68, 39, 3)}
+}
+@media (prefers-color-scheme: dark) {
+  body{background-color:rgb(15, 0, 116)}
+  .link-button{background-color: rgb(0, 8, 255);color:white;}
+  .link-button:hover{background-color: aqua;color:rgb(68, 39, 3);}
+  .heading-color{color:white}
+  .text-on-background{color:white}
+}
