@@ -4,7 +4,7 @@ import { GridContextProvider, GridDropZone, GridItem, swap } from "react-grid-dn
 
 function BookmarkGrid() {
 
-    const [items, setItems] = React.useState([1, 2, 3, 4, 5, 6, 7, 8]); // supply your own state
+    const [items, setItems] = React.useState(getSavedBookMarks()); // supply your own state
 
     // target id will only be set if dragging from one dropzone to another.
     function onChange(sourceId, sourceIndex, targetIndex, targetId) {
@@ -12,15 +12,25 @@ function BookmarkGrid() {
         setItems(nextState);
     }
 
-    return (<GridContextProvider onChange={onChange} style={{ cursor: 'default' }}>
-        <GridDropZone id="items" boxesPerRow={2} rowHeight={40}
-            style={{ height: "400px", width: '100%', cursor: 'default', textAlign: 'center' }}
-            /*disableDrag={true} disableDrop={true}*/ >
+    function getSavedBookMarks(){
+        if (localStorage.getItem('savedBookmarks')!=null){
+            return localStorage.getItem('savedBookmarks')
+        } else {
+            return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+        } 
+    }
+
+    return (<GridContextProvider onChange={onChange} style={{ cursor: 'default', marginLeft: '0px', marginRight: '0px'}}>
+        <GridDropZone id="items" boxesPerRow={1} rowHeight={40}
+            style={{ height: '800px', width: '80%', cursor: 'default', textAlign: 'center', 
+            marginLeft: '10%', marginRight: '10%'}}
+            /*disableDrag={true} disableDrop={true}*/ className='bookmarkGrid'>
+
             {items.map(item => (<GridItem key={item}>
                 <a style={{
                     height: "50%", display: 'inline-block', touchAction: 'none',
                     cursor: 'default', textAlign: 'center', borderRadius: '10px',
-                    padding: '3px 11px'
+                    padding: '3px 11px', marginTop: '8px'
                 }}
                     className='link-button'>
                     {item}
