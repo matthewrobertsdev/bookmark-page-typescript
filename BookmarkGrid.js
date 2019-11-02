@@ -22,8 +22,8 @@ function BookmarkGrid() {
 
     return (<GridContextProvider onChange={onChange} style={{ cursor: 'default', marginLeft: '0px', marginRight: '0px'}}>
         <GridDropZone id="items" boxesPerRow={1} rowHeight={40}
-            style={{ height: '800px', width: '80%', cursor: 'default', textAlign: 'center', 
-            marginLeft: '10%', marginRight: '10%'}}
+            style={{ height: '800px', width: '80%', touchAction: 'none', cursor: 'default', 
+            textAlign: 'center', marginLeft: '10%', marginRight: '10%'}}
             /*disableDrag={true} disableDrop={true}*/ className='bookmarkGrid'>
 
             {items.map(item => (<GridItem key={item}>
