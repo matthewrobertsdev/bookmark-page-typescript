@@ -1,7 +1,12 @@
-const initialState={bookmarks: getSavedBookMarks()};
+const initialState={bookmarks: getSavedBookMarks(), addModalPresent: false};
 
 const bookmarkReducer=(state=initialState, action) => {
-
+    switch (action.type) {
+        case 'SET_ADD_MODAL_PRESENT':
+            return {...state, addModalPresent: action.present};
+        default:
+            return state;
+    }
 
 }
 

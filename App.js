@@ -2,18 +2,26 @@ import React from 'react';
 import './app.css';
 import BookmarkGrid from './BookmarkGrid';
 import ToolBar from './ToolBar';
+import ReactModal from 'react-modal';
+import {setAddModalPresent} from './Actions'
+import { connect } from 'react-redux';
  
-function Example() {
+const mapStateToProps = (state) => { return {addModalPresent: state.addModalPresent} };
+const mapDispatchToProps = (dispatch) => {
+ return { setAddModalPresent: (present) => { dispatch(setAddModalPresent(present)); }} };
+ ReactModal.setAppElement('#root');
+class UnconnectedApp extends React.Component {
  
-  return (
-    <div>
-      <ToolBar/>
-      <br></br><br></br><br></br><br></br>
+  render(){ return (<div><ToolBar/>
+      <ReactModal className="action-modal" isOpen={this.props.addModalPresent} ><h1 className='modal-text-size'>Add Bookmark</h1>
+      <label className='modal-text-size'>Title:</label><br></br><input className='modal-input'/><br></br>
+      <label className='modal-text-size'>URL:</label><br></br><input className='modal-input' type='url'/><br></br><br></br>
+      <button className="link-button action-button" onClick={()=>this.props.setAddModalPresent(false)}>Add</button>
+      <button className="link-button action-button" onClick={()=>this.props.setAddModalPresent(false)}>Cancel</button>
+      </ReactModal><br></br><br></br><br></br><br></br>
       <h1 className='text-on-background'>Bookmarks</h1>
-      <br></br>
-      <BookmarkGrid/>
-    </div>
-  );
+      <br></br><BookmarkGrid/></div>
+  );};
 }
-
-export default Example;
+const App = connect(mapStateToProps, mapDispatchToProps)(UnconnectedApp)
+export default App;
