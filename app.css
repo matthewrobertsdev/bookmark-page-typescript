@@ -20,7 +20,7 @@ margin: 2%; color:white;}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
- .add-butto-selected{background-color: rgb(226, 157, 72)}
+ .add-button-selected{background-color: rgb(226, 157, 72)}
  .settings-button-selected{background-color: rgb(235, 216, 75)}
 .link-button{background-color: aqua; color:rgb(68, 39, 3); text-decoration: none;
     border-radius: 10px;}
@@ -31,9 +31,10 @@ margin: 2%; color:white;}
 .hide-for-not-small{display: none;}
 .modal-text-size{font-size: 30px}
 .modal-input{font-size: 10px; width: 250px}
+.modal-small-input{font-size: 10px; width: 100px}
 .bookmark-grid{/*background-color: rgb(20, 203, 244);*/border: 0.55px; border-style: solid;
   color:white;}
-.action-modal{position: relative; width: 300px; height: 350px; background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);
+.action-modal{position: relative; width: 300px; height: 300px; background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);
   text-align: center; left: 50%; margin-left: -150px; margin-top: 100px; border-radius: 14px; font-size: 30px;
   border: 0.55px; border-style: solid}
 .action-button{margin: 2%; font-size: 16px;}
@@ -66,7 +67,7 @@ margin: 2%; color:white;}
 }
 @media (prefers-color-scheme: dark) {
   .action-modal{background-color: rgb(15, 0, 116); color: white}
-  .bookmarkGrid{/*background-color: rgb(20, 203, 244);*/ color:white;}
+  .bookmark-grid{/*background-color: rgb(20, 203, 244);*/ color:white;}
   body{background-color:rgb(15, 0, 116)}
   .tool-bar{background-color: rgb(15, 0, 116); border-bottom: 0.55px solid white}
   .link-button{background-color: rgb(0, 8, 255);color:white;}
@@ -87,7 +88,7 @@ margin: 2%; color:white;}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
- .add-butto-selected{background-color: rgb(226, 157, 72)}
+ .add-button-selected{background-color: rgb(226, 157, 72)}
  .settings-button-selected{background-color: rgb(235, 216, 75)}
  .tool-item-selected{color:rgb(22, 13, 1);}
 }

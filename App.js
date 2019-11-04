@@ -13,14 +13,14 @@ const mapDispatchToProps = (dispatch) => {
 class UnconnectedApp extends React.Component {
  
   render(){ return (<div><ToolBar/>
-      <ReactModal className="action-modal" isOpen={this.props.addModalPresent} ><h1 className='modal-text-size'>Add Bookmark</h1>
-      <label className='modal-text-size'>Title:</label><br></br><input className='modal-input'/><br></br>
-      <label className='modal-text-size'>URL:</label><br></br><input className='modal-input' type='url'/><br></br><br></br>
+      <ReactModal className="action-modal" isOpen={this.props.addModalPresent} ><h1 className='modal-text-size'>Add Bookmark:</h1>
+      <label className='modal-text-size'>Name:</label><br></br><input className='modal-small-input'/><br></br>
+      <label className='modal-text-size'>URL:</label><br></br><input className='modal-input' type='url'/><br></br>
       <button className="link-button action-button" onClick={()=>this.props.setAddModalPresent(false)}>Add</button>
       <button className="link-button action-button" onClick={()=>this.props.setAddModalPresent(false)}>Cancel</button>
       </ReactModal><br></br><br></br><br></br><br></br>
       <h1 className='text-on-background'>Bookmarks</h1>
-      <br></br><BookmarkGrid/></div>
+      <br></br><BookmarkGrid/><br></br><br></br><br></br></div>
   );};
 }
 const App = connect(mapStateToProps, mapDispatchToProps)(UnconnectedApp)
