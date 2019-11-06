@@ -32,8 +32,14 @@ class UnconnectedAddModal extends React.Component{
         if (this.state.name!==''&&this.state.URL!==''){
             this.props.setMode('none');
             this.props.addBookmark(new LinkModel(this.state.name, this.state.URL));
+            this.setState({name: '', URL: ''});
         } else {
         }
+      }
+
+      handleCancel(){
+        this.props.setMode('none')
+        this.setState({name: '', URL: ''});
       }
 
       render(){ return (<div>
@@ -44,7 +50,7 @@ class UnconnectedAddModal extends React.Component{
         <label className='modal-text-size'>URL:</label>
         <br></br><input className='modal-input' type='url' value={this.state.URL} onChange={this.handleURLChange}/><br></br>
         <button className="link-button action-button" onClick={()=>this.handleSubmit()}>Add</button>
-        <button className="link-button action-button" onClick={()=>this.props.setMode('none')}>Cancel</button>
+        <button className="link-button action-button" onClick={()=>this.handleCancel()}>Cancel</button>
         </ReactModal></div>
     );};
 

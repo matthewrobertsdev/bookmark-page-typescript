@@ -1,11 +1,13 @@
 import React from 'react';
 import './app.css';
-import {setMode, setUncheckedArray} from './Actions'
+import {setMode, setUncheckedArray, deleteChecked} from './Actions'
 import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return {mode: state.mode, bookmarks: state.bookmarks} };
+const mapStateToProps = (state) => { return {mode: state.mode, bookmarks: state.bookmarks,
+numChecked: state.numChecked} };
 const mapDispatchToProps = (dispatch) => {
     return { setMode: (mode) => { dispatch(setMode(mode)); },
-    setUncheckedArray: (array) => { dispatch(setUncheckedArray(array)); }} };
+    setUncheckedArray: (array) => { dispatch(setUncheckedArray(array)); },
+    deleteChecked: () => { dispatch(deleteChecked());} }};
 class UnconnectedToolBar extends React.Component{
 
     render(){return (
@@ -13,7 +15,7 @@ class UnconnectedToolBar extends React.Component{
         <li className={'tool-item '+this.getRearrangeButtonColorStyle()}
         onClick={()=>this.toggleRearrangeMode()}>Rearrange</li>
         <li className={'tool-item '+this.getDeleteButtonColorStyle()}
-        onClick={()=>this.startDeleteMode()}>Delete</li>
+        onClick={()=>this.handleDeleteClick()}>{this.getDeleteString()}</li>
         {this.addCancelButton()}
         <li className='tool-item edit-button'>Edit</li>
         <li className={'tool-item '+this.getAddButtonColorStyle()} onClick={()=>this.props.setMode('add')}>Add</li>
@@ -46,9 +48,16 @@ class UnconnectedToolBar extends React.Component{
         }
     }
 
-    startDeleteMode(){
-        this.props.setUncheckedArray(this.createUncheckedArray());
-        this.props.setMode('delete')
+    handleDeleteClick(){
+        if(this.props.mode!=='delete'){
+            this.props.setUncheckedArray(this.createUncheckedArray());
+            this.props.setMode('delete');
+        } else {
+            if(this.props.numChecked>0){
+                this.props.deleteChecked();
+            }
+            this.props.setMode('none');
+        }
     }
 
     createUncheckedArray(){
@@ -57,6 +66,14 @@ class UnconnectedToolBar extends React.Component{
             checkedArray.push(false)
         }
         return checkedArray;
+    }
+
+    getDeleteString(){
+        if (this.props.numChecked===0){
+            return 'Delete';
+        } else {
+            return 'Delete ('+this.props.numChecked.toString()+')'
+        }
     }
 
 }

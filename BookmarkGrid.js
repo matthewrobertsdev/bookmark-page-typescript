@@ -2,21 +2,19 @@ import React from 'react';
 import './app.css';
 import { GridContextProvider, GridDropZone, GridItem, swap } from "react-grid-dnd";
 import { connect } from 'react-redux';
-import {setBookmarks} from './Actions'
+import {setBookmarks, toggleCheckedState} from './Actions'
 
 
 const mapStateToProps = (state) => { return {bookmarks: state.bookmarks, mode: state.mode,
 checkedArray: state.checkedArray} };
-const mapDispatchToProps = (dispatch) => {return { setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); }} };
+const mapDispatchToProps = (dispatch) => 
+{return { setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); },
+toggleCheckedState: (index) => { dispatch(toggleCheckedState(index)); }} };
 class UnconnectedBookmarkGrid extends React.Component{
 
     constructor(props){
         super(props);
         this.changeIndices=this.changeIndices.bind(this);
-    }
-
-    checkboxOnChange(index){
-        console.log(index)
     }
 
     // target id will only be set if dragging from one dropzone to another.
@@ -80,7 +78,7 @@ class UnconnectedBookmarkGrid extends React.Component{
     addForDelete(index){
         if(this.props.mode==='delete'){
             return <input type='checkbox' checked={this.props.checkedArray[index]}
-            onChange={()=>this.checkboxOnChange(index)}className='delete-check-box'></input>
+            onChange={()=>this.props.toggleCheckedState(index)}className='delete-check-box'></input>
         }
     }
 
