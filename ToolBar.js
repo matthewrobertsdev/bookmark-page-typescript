@@ -11,7 +11,9 @@ class UnconnectedToolBar extends React.Component{
         <ul className='tool-bar'>
         <li className={'tool-item '+this.getRearrangeButtonColorStyle()}
         onClick={()=>this.toggleRearrangeMode()}>Rearrange</li>
-        <li className='tool-item delete-button'>Delete</li>
+        <li className={'tool-item '+this.getDeleteButtonColorStyle()}
+        onClick={()=>this.props.setMode('delete')}>Delete</li>
+        {this.addCancelButton()}
         <li className='tool-item edit-button'>Edit</li>
         <li className={'tool-item '+this.getAddButtonColorStyle()} onClick={()=>this.props.setMode('add')}>Add</li>
         <li className='tool-item settings-button'>Settings</li>
@@ -26,7 +28,7 @@ class UnconnectedToolBar extends React.Component{
     }
 
     getDeleteButtonColorStyle(){
-        //return this.props.mode==='delete' ? 'tool-item-selected rearrange-button-selected':'rearrange-button';
+        return this.props.mode==='delete' ? 'tool-item-selected delete-button-selected':'delete-button';
     }
 
     toggleRearrangeMode(){
@@ -34,6 +36,12 @@ class UnconnectedToolBar extends React.Component{
             this.props.setMode('none')
         } else {
             this.props.setMode('rearrange')
+        }
+    }
+
+    addCancelButton(){
+        if (this.props.mode==='delete'){
+            return <li className='tool-item cancel-button' onClick={()=>{this.props.setMode('none')}}>Cancel</li>
         }
     }
 

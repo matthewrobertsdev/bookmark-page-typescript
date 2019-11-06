@@ -38,6 +38,7 @@ margin: 2%; color:white;}
   text-align: center; left: 50%; margin-left: -150px; margin-top: 100px; border-radius: 14px; font-size: 30px;
   border: 0.55px; border-style: solid}
 .action-button{margin: 2%; font-size: 16px;}
+.delete-check-box{transform: scale(1.5); margin:8px; color:rgb(68, 39, 3); background-color: rgb(68, 39, 3);}
 @media (prefers-color-scheme: light) {
   .action-modal{background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);}
   .bookmark-grid{/*background-color: rgb(0, 8, 255);*/ color:rgb(68, 39, 3);}
@@ -53,16 +54,19 @@ margin: 2%; color:white;}
  .edit-button{background-color: rgb(53, 240, 53)}
  .add-button{background-color: rgb(226, 157, 72)}
  .settings-button{background-color: rgb(235, 216, 75)}
+ .cancel-button{background-color: aqua;}
  .rearrange-button:hover{background-color: rgb(96, 50, 116);}
  .delete-button:hover{background-color: rgb(154, 58, 58)}
  .edit-button:hover{background-color: rgb(57, 116, 57)}
  .add-button:hover{background-color: rgb(154, 111, 58)}
  .settings-button:hover{background-color: rgb(131, 123, 64)}
+ .cancel-button:hover{background-color: rgb(0, 8, 255);}
  .rearrange-button-selected{background-color: rgb(96, 50, 116);}
  .delete-button-selected{background-color: rgb(154, 58, 58)}
  .edit-button-selected{background-color: rgb(57, 116, 57)}
  .add-button-selected{background-color: rgb(154, 111, 58)}
  .settings-button-selected{background-color: rgb(131, 123, 64);}
+ .cancel-button-selected{background-color: rgb(0, 8, 255);}
  .tool-item-selected{color:white;}
 }
 @media (prefers-color-scheme: dark) {
@@ -80,15 +84,18 @@ margin: 2%; color:white;}
  .edit-button{background-color: rgb(9, 87, 9)}
  .add-button{background-color: rgb(160, 88, 0)}
  .settings-button{background-color: rgb(106, 94, 0)}
+ .cancel-button{background-color: rgb(0, 8, 255);}
  .rearrange-button:hover{background-color: rgb(166, 139, 226);}
  .delete-button:hover{background-color: rgb(244, 94, 94)}
  .edit-button:hover{background-color: rgb(53, 240, 53)}
  .add-button:hover{background-color: rgb(226, 157, 72)}
  .settings-button:hover{background-color: rgb(235, 216, 75)}
+ .cancel-button:hover{background-color: aqua}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
  .add-button-selected{background-color: rgb(226, 157, 72)}
  .settings-button-selected{background-color: rgb(235, 216, 75)}
+ .cancel-button-selected{background-color: rgb(0, 8, 255);}
  .tool-item-selected{color:rgb(22, 13, 1);}
 }

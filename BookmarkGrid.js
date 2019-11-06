@@ -70,7 +70,7 @@ class UnconnectedBookmarkGrid extends React.Component{
 
     addForDelete(){
         if(this.props.mode==='delete'){
-            return <input type='checkbox'></input>
+            return <input type='checkbox' className='delete-check-box'></input>
         }
     }
 
