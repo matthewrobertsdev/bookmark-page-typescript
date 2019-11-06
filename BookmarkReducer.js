@@ -1,4 +1,4 @@
-const initialState = { bookmarks: getSavedBookMarks(), mode: 'none', checkedArray: [], numChecked: 0};
+const initialState = { bookmarks: getSavedBookmarks(), mode: 'none', checkedArray: [], numChecked: 0};
 
 const bookmarkReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -6,7 +6,7 @@ const bookmarkReducer = (state = initialState, action) => {
             return { ...state, mode: action.mode };
         case 'SET_BOOKMARKS':
             return { ...state, bookmarks: action.bookmarks }
-        case 'ADD_BOOKMARKS':
+        case 'ADD_BOOKMARK':
             let newBookmarks = state.bookmarks.slice(0);
             newBookmarks.unshift(action.bookmark);
             saveBookmarks(newBookmarks);
@@ -26,9 +26,7 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'DELETE_CHECKED':
             let keptBookmarks=[];
             for (let i=0; i<state.bookmarks.length; i++){
-                console.log(state.bookmarks[i])
                 if (!state.checkedArray[i]){
-                    console.log(state.bookmarks[i])
                     keptBookmarks.push(state.bookmarks[i])
                 }
             }
@@ -44,7 +42,7 @@ function saveBookmarks(bookmarks){
     localStorage.setItem('savedBookmarks', JSON.stringify(bookmarks))
 }
 
-function getSavedBookMarks() {
+function getSavedBookmarks() {
     if (localStorage.getItem('savedBookmarks') != null) {
         return JSON.parse(localStorage.getItem('savedBookmarks'));
     } else {
