@@ -1,17 +1,15 @@
-const initialState={bookmarks: getSavedBookMarks(), addMode: false, rearrangeMode: false};
+const initialState={bookmarks: getSavedBookMarks(), mode: 'none'};
 
 const bookmarkReducer=(state=initialState, action) => {
     switch (action.type) {
-        case 'SET_ADD_MODE':
-            return {...state, addMode: action.present, rearrangeMode: false};
+        case 'SET_MODE':
+            return {...state, mode: action.mode};
         case 'SET_BOOKMARKS':
             return {...state, bookmarks: action.bookmarks}
         case 'ADD_BOOKMARKS':
             let newBookmarks=state.bookmarks.slice(0)
             newBookmarks.unshift(action.bookmark)
             return {...state, bookmarks: newBookmarks}
-        case 'SET_REARRANGE_MODE':
-            return {...state, rearrangeMode: action.on, addMode: false}
         default:
             return state;
     }

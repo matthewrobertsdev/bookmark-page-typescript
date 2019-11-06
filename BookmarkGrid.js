@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {setBookmarks} from './Actions'
 
 
-const mapStateToProps = (state) => { return {bookmarks: state.bookmarks, rearrangeMode: state.rearrangeMode} };
+const mapStateToProps = (state) => { return {bookmarks: state.bookmarks, mode: state.mode} };
 const mapDispatchToProps = (dispatch) => {return { setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); }} };
 class UnconnectedBookmarkGrid extends React.Component{
 
@@ -25,14 +25,14 @@ class UnconnectedBookmarkGrid extends React.Component{
         <GridDropZone id="items" boxesPerRow={1} rowHeight={40}
             style={{ height: this.getHeightString(), width: '80%', touchAction: this.getTouchActionString(), cursor: 'default', 
             textAlign: 'center', marginLeft: '10%', marginRight: '10%'}}
-            disableDrag={!this.props.rearrangeMode} disableDrop={!this.props.rearrangeMode} className='bookmark-grid'>
+            disableDrag={!this.isRearrangeMode()} disableDrop={!this.isRearrangeMode()} className='bookmark-grid'>
             {this.getBookmarkGrid()}
         </GridDropZone>
     </GridContextProvider>);
     }
 
     getBookmarkGrid(){
-        if (this.props.rearrangeMode){
+        if (this.props.mode==='rearrange'){
             return this.props.bookmarks.map((item, index)=>{return <GridItem key={index}>
                 <label style={{
                     height: "50%", display: 'inline-block', touchAction: 'none',
@@ -44,6 +44,7 @@ class UnconnectedBookmarkGrid extends React.Component{
                 </label> </GridItem>})
         } else {
             return this.props.bookmarks.map((item, index)=>{return <GridItem key={index}>
+                {this.addForDelete()}
                 <a href={item.URL} style={{
                     height: "50%", display: 'inline-block', touchAction: 'default',
                     cursor: 'pointer', textAlign: 'center', borderRadius: '10px',
@@ -60,11 +61,21 @@ class UnconnectedBookmarkGrid extends React.Component{
     }
 
     getTouchActionString(){
-        return this.props.rearrangeMode ? 'none' : 'default';
+        return this.isRearrangeMode() ? 'none' : 'default';
     }
 
     getCursorString(){
-        return this.props.rearrangeMode ? 'default' : 'pointer';
+        return this.isRearrangeMode() ? 'default' : 'pointer';
+    }
+
+    addForDelete(){
+        if(this.props.mode==='delete'){
+            return <input type='checkbox'></input>
+        }
+    }
+
+    isRearrangeMode(){
+        return this.props.mode==='rearrange'
     }
 
 }
