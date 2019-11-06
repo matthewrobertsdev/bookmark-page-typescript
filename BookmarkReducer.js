@@ -25,8 +25,10 @@ const bookmarkReducer = (state = initialState, action) => {
             return { ...state, checkedArray: newCheckedState, numChecked: numChecked}
         case 'DELETE_CHECKED':
             let keptBookmarks=[];
-            for (let i=0; i<state.bookmarks; i++){
+            for (let i=0; i<state.bookmarks.length; i++){
+                console.log(state.bookmarks[i])
                 if (!state.checkedArray[i]){
+                    console.log(state.bookmarks[i])
                     keptBookmarks.push(state.bookmarks[i])
                 }
             }
