@@ -1,10 +1,11 @@
 import React from 'react';
 import './app.css';
-import {setMode} from './Actions'
+import {setMode, setUncheckedArray} from './Actions'
 import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return {mode: state.mode} };
+const mapStateToProps = (state) => { return {mode: state.mode, bookmarks: state.bookmarks} };
 const mapDispatchToProps = (dispatch) => {
-    return { setMode: (mode) => { dispatch(setMode(mode)); }} };
+    return { setMode: (mode) => { dispatch(setMode(mode)); },
+    setUncheckedArray: (array) => { dispatch(setUncheckedArray(array)); }} };
 class UnconnectedToolBar extends React.Component{
 
     render(){return (
@@ -12,7 +13,7 @@ class UnconnectedToolBar extends React.Component{
         <li className={'tool-item '+this.getRearrangeButtonColorStyle()}
         onClick={()=>this.toggleRearrangeMode()}>Rearrange</li>
         <li className={'tool-item '+this.getDeleteButtonColorStyle()}
-        onClick={()=>this.props.setMode('delete')}>Delete</li>
+        onClick={()=>this.startDeleteMode()}>Delete</li>
         {this.addCancelButton()}
         <li className='tool-item edit-button'>Edit</li>
         <li className={'tool-item '+this.getAddButtonColorStyle()} onClick={()=>this.props.setMode('add')}>Add</li>
@@ -43,6 +44,19 @@ class UnconnectedToolBar extends React.Component{
         if (this.props.mode==='delete'){
             return <li className='tool-item cancel-button' onClick={()=>{this.props.setMode('none')}}>Cancel</li>
         }
+    }
+
+    startDeleteMode(){
+        this.props.setUncheckedArray(this.createUncheckedArray());
+        this.props.setMode('delete')
+    }
+
+    createUncheckedArray(){
+        let checkedArray=[]
+        for(let i=0; i<this.props.bookmarks.length; i++){
+            checkedArray.push(false)
+        }
+        return checkedArray;
     }
 
 }

@@ -10,6 +10,8 @@ const bookmarkReducer=(state=initialState, action) => {
             let newBookmarks=state.bookmarks.slice(0)
             newBookmarks.unshift(action.bookmark)
             return {...state, bookmarks: newBookmarks}
+        case 'CREATE_UNCHECKED_ARRAY':
+                return {...state, checkedArray: action.array}
         default:
             return state;
     }

@@ -5,13 +5,18 @@ import { connect } from 'react-redux';
 import {setBookmarks} from './Actions'
 
 
-const mapStateToProps = (state) => { return {bookmarks: state.bookmarks, mode: state.mode} };
+const mapStateToProps = (state) => { return {bookmarks: state.bookmarks, mode: state.mode,
+checkedArray: state.checkedArray} };
 const mapDispatchToProps = (dispatch) => {return { setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); }} };
 class UnconnectedBookmarkGrid extends React.Component{
 
     constructor(props){
         super(props);
         this.changeIndices=this.changeIndices.bind(this);
+    }
+
+    checkboxOnChange(index){
+        console.log(index)
     }
 
     // target id will only be set if dragging from one dropzone to another.
@@ -44,7 +49,7 @@ class UnconnectedBookmarkGrid extends React.Component{
                 </label> </GridItem>})
         } else {
             return this.props.bookmarks.map((item, index)=>{return <GridItem key={index}>
-                {this.addForDelete()}
+                {this.addForDelete(index)}
                 <a href={item.URL} style={{
                     height: "50%", display: 'inline-block', touchAction: 'default',
                     cursor: 'pointer', textAlign: 'center', borderRadius: '10px',
@@ -68,14 +73,15 @@ class UnconnectedBookmarkGrid extends React.Component{
         return this.isRearrangeMode() ? 'default' : 'pointer';
     }
 
-    addForDelete(){
-        if(this.props.mode==='delete'){
-            return <input type='checkbox' className='delete-check-box'></input>
-        }
-    }
-
     isRearrangeMode(){
         return this.props.mode==='rearrange'
+    }
+
+    addForDelete(index){
+        if(this.props.mode==='delete'){
+            return <input type='checkbox' checked={this.props.checkedArray[index]}
+            onChange={()=>this.checkboxOnChange(index)}className='delete-check-box'></input>
+        }
     }
 
 }
