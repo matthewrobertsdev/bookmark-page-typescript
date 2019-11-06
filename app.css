@@ -30,8 +30,8 @@ margin: 2%; color:white;}
 .h3-size{font-size: 18.72px;}
 .hide-for-not-small{display: none;}
 .modal-text-size{font-size: 30px}
-.modal-input{font-size: 10px; width: 250px}
-.modal-small-input{font-size: 10px; width: 100px}
+.modal-input{font-size: 10px; width: 250px; text-align: center;}
+.modal-small-input{font-size: 10px; width: 100px;text-align: center;}
 .bookmark-grid{/*background-color: rgb(20, 203, 244);*/border: 0.55px; border-style: solid;
   color:white;}
 .action-modal{position: relative; width: 300px; height: 300px; background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);
