@@ -17,7 +17,7 @@ class UnconnectedApp extends React.Component {
   );};
 
   getBookmarkContent(){
-    if (this.props.bookmarks.length>0){
+    if (this.props.bookmarks!=null&&this.props.bookmarks.length>0){
       return <BookmarkGrid/>
     } else {
       return <h1 className='text-on-background'>Tap or click the "Add" button to add a bookmark</h1>

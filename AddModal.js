@@ -1,19 +1,25 @@
 import React from 'react';
 import './app.css';
 import ReactModal from 'react-modal';
-import {setMode, addBookmark} from './Actions'
+import {setMode, addBookmark, setUpdatingName, setUpdatingURL, updateBookmark} from './Actions'
 import { connect } from 'react-redux';
 import LinkModel from './LinkModel';
-const mapStateToProps = (state) => { return {mode: state.mode} };
+import {saveBookmarks} from './BookmarkReducer';
+
+const mapStateToProps = (state) => { return {mode: state.mode,
+  updatingURL: state.updatingURL, updatingName: state.updatingName, index: state.index,
+  updateBookmark: state.updateBookmark, bookmarks: state.bookmarks}};
 const mapDispatchToProps = (dispatch) => {
  return { setMode: (mode) => { dispatch(setMode(mode)); },
-  addBookmark: (bookmark) => { dispatch(addBookmark(bookmark)); }}};
+  addBookmark: (bookmark) => { dispatch(addBookmark(bookmark)); },
+  setUpdatingName:(name)=>{dispatch(setUpdatingName(name)); },
+  setUpdatingURL:(URL)=>{dispatch(setUpdatingURL(URL)); },
+  updateBookmark:(index, bookmark)=>{dispatch(updateBookmark(index, bookmark)); }}}
  ReactModal.setAppElement('#root');
 class UnconnectedAddModal extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {name: '', URL: ''};
     
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleURLChange = this.handleURLChange.bind(this);
@@ -21,44 +27,70 @@ class UnconnectedAddModal extends React.Component{
       }
     
       handleNameChange(event) {
-        this.setState({name: event.target.value});
+          this.props.setUpdatingName(event.target.value);
+      }
+
+      clearUpdatingBookmark(){
+        this.props.setUpdatingName('');
+        this.props.setUpdatingURL('');
       }
     
       handleURLChange(event) {
-        this.setState({URL: event.target.value});
+        this.props.setUpdatingURL(event.target.value)
       }
     
       handleSubmit() {
-        if (this.state.name!==''&&this.state.URL!==''){
-            this.props.setMode('none');
-            this.props.addBookmark(new LinkModel(this.state.name, this.state.URL));
-            this.setState({name: '', URL: ''});
+        if (this.props.updatingName!==''&&this.props.updatingURL!==''){
+            if(this.props.mode==='add'){
+              this.props.addBookmark(new LinkModel(this.props.updatingName, this.props.updatingURL));
+              this.props.setMode('none');
+            } else if (this.props.mode==='update'){
+              this.props.updateBookmark(this.props.index, new LinkModel(this.props.updatingName, this.props.updatingURL));
+              this.props.setMode('edit');
+            }
+            this.clearUpdatingBookmark();
+            saveBookmarks(this.props.bookmarks);
         } else {
         }
       }
 
       handleCancel(){
-        this.props.setMode('none')
-        this.setState({name: '', URL: ''});
+        if(this.props.mode==='add'){
+          this.props.setMode('none')
+        } else if((this.props.mode==='update')){
+          this.props.setMode('edit');
+        }
+        this.clearUpdatingBookmark();
       }
 
       render(){ return (<div>
-        {this.clearStateIfHidden()}
-        <ReactModal className="action-modal" isOpen={this.props.mode==='add'} ><h1 className='modal-text-size'>Add Bookmark:</h1>
+        <ReactModal className="action-modal" isOpen={this.props.mode==='add'||this.props.mode==='update'} >
+          <h1 className='modal-text-size'>{this.getTitleString()}</h1>
         <label className='modal-text-size'>Name:</label>
-        <br></br><input className='modal-small-input' value={this.state.name} onChange={this.handleNameChange}/><br></br>
+        <br></br><input className='modal-small-input' value={this.props.updatingName} onChange={this.handleNameChange}/><br></br>
         <label className='modal-text-size'>URL:</label>
-        <br></br><input className='modal-input' type='url' value={this.state.URL} onChange={this.handleURLChange}/><br></br>
-        <button className="link-button action-button" onClick={()=>this.handleSubmit()}>Add</button>
+        <br></br><input className='modal-input' type='url' value={this.props.updatingURL} onChange={this.handleURLChange}/><br></br>
+        <button className="link-button action-button" onClick={()=>this.handleSubmit()}>{this.getSubmitString()}</button>
         <button className="link-button action-button" onClick={()=>this.handleCancel()}>Cancel</button>
         </ReactModal></div>
     );};
 
-    clearStateIfHidden(){
-      if(!this.props.mode==='add'&&this.state.name!==''&&this.state.URL!==''){
-        this.setState({name: '', URL: ''});
+    getTitleString(){
+      if (this.props.mode==='add'){
+        return 'Add Bookmark:'
+      } else if (this.props.mode==='edit'){
+        return 'Update Bookmark:'
       }
     }
+
+    getSubmitString(){
+      if (this.props.mode==='add'){
+        return 'Add'
+      } else if (this.props.mode==='update'){
+        return 'Update'
+      }
+    }
+
 }
 const AddModal = connect(mapStateToProps, mapDispatchToProps)(UnconnectedAddModal)
 export default AddModal
