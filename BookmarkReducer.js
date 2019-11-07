@@ -14,6 +14,7 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'ADD_BOOKMARK':
             let newBookmarks=[]
             if (state.bookmarks!==null){
+                console.log()
                 newBookmarks = state.bookmarks.slice(0);
                 newBookmarks.unshift(action.bookmark);
             } else {
@@ -51,6 +52,7 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'UPDATE_BOOKMARK':
                 let updatedBookMarks=state.bookmarks
                 updatedBookMarks[action.index]=action.bookmark
+                saveBookmarks(updatedBookMarks);
                 return { ...state, bookmarks: updatedBookMarks}
         default:
             return state;

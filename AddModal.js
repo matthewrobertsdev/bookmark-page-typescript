@@ -49,7 +49,6 @@ class UnconnectedAddModal extends React.Component{
               this.props.setMode('edit');
             }
             this.clearUpdatingBookmark();
-            saveBookmarks(this.props.bookmarks);
         } else {
         }
       }
