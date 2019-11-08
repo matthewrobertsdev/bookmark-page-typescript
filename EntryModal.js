@@ -4,7 +4,6 @@ import ReactModal from 'react-modal';
 import {setMode, addBookmark, setUpdatingName, setUpdatingURL, updateBookmark} from './Actions'
 import { connect } from 'react-redux';
 import LinkModel from './LinkModel';
-import {saveBookmarks} from './BookmarkReducer';
 
 const mapStateToProps = (state) => { return {mode: state.mode,
   updatingURL: state.updatingURL, updatingName: state.updatingName, index: state.index,
@@ -16,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   setUpdatingURL:(URL)=>{dispatch(setUpdatingURL(URL)); },
   updateBookmark:(index, bookmark)=>{dispatch(updateBookmark(index, bookmark)); }}}
  ReactModal.setAppElement('#root');
-class UnconnectedAddModal extends React.Component{
+class UnconnectedEntryModal extends React.Component{
 
     constructor(props) {
         super(props);
@@ -91,5 +90,5 @@ class UnconnectedAddModal extends React.Component{
     }
 
 }
-const AddModal = connect(mapStateToProps, mapDispatchToProps)(UnconnectedAddModal)
-export default AddModal
+const EntryModal = connect(mapStateToProps, mapDispatchToProps)(UnconnectedEntryModal)
+export default EntryModal

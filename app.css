@@ -5,6 +5,8 @@ border-bottom: 0.55px solid rgb(68, 39, 3);}
 .tool-item{display: inline-block; padding: 4px 12px; text-decoration: none; 
  border: 1.1px; border-style: solid; border-radius: 15px; text-align: center;
 margin: 2%; color:white;}
+.grid-item{height: "50%"; display: 'inline-block'; text-align: 'center'; border-radius: '10px';
+  padding: '3px 11px'; margin-top: '8px';}
 /*.tool-item:hover{color:rgb(22, 13, 1);}*/
 .tool-item-selected{color:rgb(22, 13, 1);}
  .rearrange-button{background-color: rgb(66, 0, 94);}
@@ -47,7 +49,7 @@ margin: 2%; color:white;}
   .tool-item{color:rgb(22, 13, 1);}
   /*.tool-item:hover{color:white;}*/
   .tool-bar{background-color: rgb(20, 203, 244); border-bottom: 0.55px solid rgb(68, 39, 3);}
-  .link-button{background-color: aqua; color:rgb(68, 39, 3);}
+  .link-button{background-color: aqua; color:rgb(68, 39, 3); }
   .heading-color{color:rgb(48, 27, 2)}
   .text-on-background{color:rgb(68, 39, 3);}
   .heading-color{color:rgb(68, 39, 3)}

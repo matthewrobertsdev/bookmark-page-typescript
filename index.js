@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import bookmarkStore from './BookmarkStore'
-
+document.title='Bookmark Page'
 const bookmarkPage=<Provider store={bookmarkStore()}><App/></Provider>
 
 ReactDOM.render(bookmarkPage, document.getElementById('root'));

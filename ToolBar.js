@@ -53,6 +53,8 @@ class UnconnectedToolBar extends React.Component{
             this.props.setMode('edit')
         } else if (this.props.mode==='none'){
             this.props.setMode('edit')
+        } else{
+            this.props.setMode('edit')
         }
     }
 
