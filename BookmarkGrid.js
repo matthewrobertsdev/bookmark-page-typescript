@@ -29,6 +29,34 @@ class UnconnectedBookmarkGrid extends React.Component {
     constructor(props) {
         super(props);
         this.changeIndices = this.changeIndices.bind(this);
+        this.state={numColumns: 1};
+        if(window.innerWidth<400){
+            this.state={numColumns: 1}
+        } else if(window.innerWidth>400){
+            this.state={numColumns: 2}
+        }
+        this.resizeFunction=this.resizeFunction.bind(this);
+        window.addEventListener('resize', this.resizeFunction);
+    }
+
+    resizeFunction(){
+        if(window.innerWidth<400){
+            if(this.state.numColumns!==1){
+                this.setState({numColumns: 1});
+            }
+        } else if(window.innerWidth>400&&window.innerWidth<800){
+            if(this.state.numColumns!==2){
+                this.setState({numColumns: 2});
+            }
+        } else if(window.innerWidth>800&&window.innerWidth<1200){
+            if(this.state.numColumns!==3){
+                this.setState({numColumns: 3});
+            }
+        } else if(window.innerWidth>1200){
+            if(this.state.numColumns!==4){
+                this.setState({numColumns: 4});
+            }
+        }
     }
 
     // target id will only be set if dragging from one dropzone to another.
@@ -40,7 +68,7 @@ class UnconnectedBookmarkGrid extends React.Component {
 
     render() {
         return (<GridContextProvider onChange={this.changeIndices} style={{ cursor: 'default', marginLeft: '0px', marginRight: '0px' }}>
-            <GridDropZone id="items" boxesPerRow={1} rowHeight={40}
+            <GridDropZone id="items" boxesPerRow={this.state.numColumns} rowHeight={40}
                 style={{
                     height: this.getHeightString(), width: '80%', touchAction: this.getTouchActionString(), cursor: 'default',
                     textAlign: 'center', marginLeft: '10%', marginRight: '10%'
@@ -78,7 +106,14 @@ class UnconnectedBookmarkGrid extends React.Component {
     }
 
     getHeightString() {
-        return (this.props.bookmarks.length * 40).toString() + 'px';
+        let effectiveLength=0;
+        if (this.props.bookmarks.length%this.state.numColumns!==0){
+            effectiveLength=this.props.bookmarks.length+
+            (this.state.numColumns-this.props.bookmarks.length%this.state.numColumns);
+        } else {
+            effectiveLength=this.props.bookmarks.length;
+        }
+        return (effectiveLength * (40/this.state.numColumns)).toString() + 'px';
     }
 
     getTouchActionString() {
