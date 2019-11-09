@@ -29,33 +29,15 @@ class UnconnectedBookmarkGrid extends React.Component {
     constructor(props) {
         super(props);
         this.changeIndices = this.changeIndices.bind(this);
-        this.state={numColumns: 1};
-        if(window.innerWidth<400){
-            this.state={numColumns: 1}
-        } else if(window.innerWidth>400){
-            this.state={numColumns: 2}
-        }
+        this.state={numColumns: Math.floor(window.innerWidth/400)+1};
         this.resizeFunction=this.resizeFunction.bind(this);
         window.addEventListener('resize', this.resizeFunction);
     }
 
     resizeFunction(){
-        if(window.innerWidth<400){
-            if(this.state.numColumns!==1){
-                this.setState({numColumns: 1});
-            }
-        } else if(window.innerWidth>400&&window.innerWidth<800){
-            if(this.state.numColumns!==2){
-                this.setState({numColumns: 2});
-            }
-        } else if(window.innerWidth>800&&window.innerWidth<1200){
-            if(this.state.numColumns!==3){
-                this.setState({numColumns: 3});
-            }
-        } else if(window.innerWidth>1200){
-            if(this.state.numColumns!==4){
-                this.setState({numColumns: 4});
-            }
+        let numColumns=Math.floor(window.innerWidth/400)+1
+        if(this.state.numColumns!==numColumns){
+            this.setState({numColumns: numColumns});
         }
     }
 
