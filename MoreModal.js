@@ -1,13 +1,15 @@
 import React from 'react';
 import './app.css';
 import ReactModal from 'react-modal';
-import {setMode} from './Actions'
+import {setMode, appendBookmarks, setBookmarks} from './Actions'
 import { connect } from 'react-redux';
 import LinkModel from './LinkModel';
 
 const mapStateToProps = (state) => { return {mode: state.mode, bookmarks: state.bookmarks}};
 const mapDispatchToProps = (dispatch) => {
- return { setMode: (mode) => { dispatch(setMode(mode)); },}}
+ return { setMode: (mode) => { dispatch(setMode(mode)); },
+ appendBookmarks: (bookmarks) => { dispatch(appendBookmarks(bookmarks)); },
+ setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); }}}
  ReactModal.setAppElement('#root');
 class UnconnectedMoreModal extends React.Component{
 
@@ -32,7 +34,7 @@ class UnconnectedMoreModal extends React.Component{
         </ReactModal></div>
     );};
 
-    handleFileChosen(append){
+    handleFileChosen(append, props){
       let reader = new FileReader();
       let file=null;
       if(append){
@@ -41,10 +43,18 @@ class UnconnectedMoreModal extends React.Component{
         file = document.getElementById('loadAndReplaceButton').files[0];
       }
       reader.addEventListener("loadend", function() {
-        let stringArray=reader.result.split(',')
+        let bookmarks=JSON.parse(reader.result);
+        console.log(bookmarks)
+        if(append){
+          props.appendBookmarks(bookmarks);
+        } else {
+          props.setBookmarks(bookmarks);
+        }
+        /*let stringArray=reader.result.split(',')
         if ((stringArray.length-1)%2!==0){
           throw Error("Odd number of boomark components");
         }
+        
         let links=[]
         let link=new LinkModel('','');
         for(let i=0; i<stringArray.length; i++){
@@ -56,6 +66,7 @@ class UnconnectedMoreModal extends React.Component{
             link.name=stringArray[i];
           }
         }
+        */
       });
       reader.readAsText(file);
     }
@@ -69,11 +80,14 @@ class UnconnectedMoreModal extends React.Component{
     }
 
     getTextToSave(){
+      return JSON.stringify(this.props.bookmarks);
+      /*
       var text='';
       for (let i=0; i<this.props.bookmarks.length; i++){
           text+=this.props.bookmarks[i].name+','+this.props.bookmarks[i].URL+',';
       }
       return text;
+      */
     }
 
     getBookmarks(text){
@@ -84,12 +98,12 @@ class UnconnectedMoreModal extends React.Component{
     }
 
     handleLoadMoreClick(){
-      document.getElementById('loadMoreButton').addEventListener('change', (evt)=>this.handleFileChosen(true));
+      document.getElementById('loadMoreButton').addEventListener('change', ()=>this.handleFileChosen(true, this.props));
       document.getElementById('loadMoreButton').click();
     }
 
     handleLoadAndReplaceClick(){
-      document.getElementById('loadAndReplaceButton').addEventListener('change', (evt)=>this.handleFileChosen(false));
+      document.getElementById('loadAndReplaceButton').addEventListener('change', ()=>this.handleFileChosen(false, this.props));
       document.getElementById('loadAndReplaceButton').click();
     }
 

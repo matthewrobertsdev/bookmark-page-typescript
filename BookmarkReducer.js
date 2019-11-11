@@ -10,6 +10,7 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'SET_MODE':
             return { ...state, mode: action.mode };
         case 'SET_BOOKMARKS':
+            saveBookmarks(action.newBookmarks);
             return { ...state, bookmarks: action.bookmarks }
         case 'ADD_BOOKMARK':
             let newBookmarks=[]
@@ -50,11 +51,14 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'SET_UPDATING_INDEX':
                 return {...state, index: action.index}
         case 'UPDATE_BOOKMARK':
-                let updatedBookMarks=state.bookmarks
-                updatedBookMarks[action.index]=action.bookmark
-                saveBookmarks(updatedBookMarks);
-                return { ...state, bookmarks: updatedBookMarks}
+                var updatedBookmarks=state.bookmarks
+                updatedBookmarks[action.index]=action.bookmark
+                saveBookmarks(updatedBookmarks);
+                return { ...state, bookmarks: updatedBookmarks}
         case 'APPEND_BOOKMARKS':
+                var updatedBookmarks=state.bookmarks.concat(action.bookmarks);
+                saveBookmarks(updatedBookmarks);
+                return { ...state, bookmarks: updatedBookmarks}
         default:
             return state;
     }
@@ -66,6 +70,7 @@ export const saveBookmarks=function saveBookmarks(bookmarks) {
 }
 
 function getSavedBookmarks() {
+    //localStorage.clear();
     if (localStorage.getItem('savedBookmarks') != null) {
         return JSON.parse(localStorage.getItem('savedBookmarks'));
     } else {
