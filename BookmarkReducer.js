@@ -54,6 +54,7 @@ const bookmarkReducer = (state = initialState, action) => {
                 updatedBookMarks[action.index]=action.bookmark
                 saveBookmarks(updatedBookMarks);
                 return { ...state, bookmarks: updatedBookMarks}
+        case 'APPEND_BOOKMARKS':
         default:
             return state;
     }
