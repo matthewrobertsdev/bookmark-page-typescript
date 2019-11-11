@@ -24,10 +24,10 @@ class UnconnectedMoreModal extends React.Component{
         <button href='' id='downloadButton' className='link-button action-button' onClick={()=>this.handleSaveClick()}>Download as Text File</button>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.handleLoadMoreClick()}>
-        <input id='loadMoreButton' type="file"/>Load More</button>
+        Load More</button><input id='loadMoreButton' type="file"/>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.handleLoadAndReplaceClick()}>
-        <input id='loadAndReplaceButton' type="file"/>Load and Replace</button>
+        Load and Replace</button><input id='loadAndReplaceButton' type="file"/>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.props.setMode('none')}>Done</button>
         <a id='downloadLink' style={{display: 'none'}}></a>
@@ -35,6 +35,7 @@ class UnconnectedMoreModal extends React.Component{
     );};
 
     handleFileChosen(append, props){
+      console.log('abcd')
       let reader = new FileReader();
       let file=null;
       if(append){

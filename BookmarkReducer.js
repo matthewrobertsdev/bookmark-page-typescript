@@ -10,7 +10,7 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'SET_MODE':
             return { ...state, mode: action.mode };
         case 'SET_BOOKMARKS':
-            saveBookmarks(action.newBookmarks);
+            saveBookmarks(action.bookmarks);
             return { ...state, bookmarks: action.bookmarks }
         case 'ADD_BOOKMARK':
             let newBookmarks=[]
@@ -65,14 +65,22 @@ const bookmarkReducer = (state = initialState, action) => {
 
 }
 
+export const validateBookmarks=function validateBookmarks(bookmarks){
+
+}
+
 export const saveBookmarks=function saveBookmarks(bookmarks) {
     localStorage.setItem('savedBookmarks', JSON.stringify(bookmarks))
 }
 
 function getSavedBookmarks() {
     //localStorage.clear();
-    if (localStorage.getItem('savedBookmarks') != null) {
-        return JSON.parse(localStorage.getItem('savedBookmarks'));
+    if (localStorage.getItem('savedBookmarks') !== null&&localStorage.getItem('savedBookmarks')!==undefined) {
+        try{
+            return JSON.parse(localStorage.getItem('savedBookmarks'));
+        } catch(e){
+            return [];
+        }
     } else {
         return [];
     }
