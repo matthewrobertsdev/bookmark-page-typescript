@@ -11,10 +11,6 @@ const mapDispatchToProps = (dispatch) => {
  ReactModal.setAppElement('#root');
 class UnconnectedMoreModal extends React.Component{
 
-    constructor(props) {
-        super(props);
-      }
-
       render(){ return (<div>
         <ReactModal className="action-modal" isOpen={this.props.mode==='more'} >
           <h1 className='modal-text-size-2'>More</h1>
