@@ -19,7 +19,7 @@ class UnconnectedToolBar extends React.Component{
         {this.addCancelButton()}
         <li className={'tool-item '+this.getEditButtonColorStyle()} onClick={()=>this.handleEditClicked()}>Edit</li>
         <li className={'tool-item '+this.getAddButtonColorStyle()} onClick={()=>this.props.setMode('add')}>Add</li>
-        {/*<li className='tool-item settings-button'>Settings</li>*/}
+        {<li className='tool-item settings-button' onClick={()=>this.props.setMode('more')}>More</li>}
         </ul>);};
 
     getAddButtonColorStyle(){
