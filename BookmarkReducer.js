@@ -16,7 +16,6 @@ const bookmarkReducer = (state = initialState, action) => {
         case 'ADD_BOOKMARK':
             let newBookmarks=[]
             if (state.bookmarks!==null){
-                console.log()
                 newBookmarks = state.bookmarks.slice(0);
                 newBookmarks.unshift(action.bookmark);
             } else {
@@ -82,7 +81,6 @@ export const saveBookmarks=function saveBookmarks(bookmarks) {
 }
 
 function getSavedBookmarks() {
-    //localStorage.clear();
     if (localStorage.getItem('savedBookmarks') !== null&&localStorage.getItem('savedBookmarks')!==undefined) {
         try{
             return JSON.parse(localStorage.getItem('savedBookmarks'));

@@ -10,9 +10,7 @@ const mapStateToProps = (state) => { return {bookmarks: state.bookmarks} };
 class UnconnectedApp extends React.Component {
   
  
-  render(){ return (<div><ToolBar/>
-      <EntryModal/>
-      <MoreModal/>
+  render(){ return (<div><ToolBar/><EntryModal/><MoreModal/>
       <br></br><br></br><br></br><br></br>
       <h1 className='text-on-background'>Bookmarks</h1>
       <br></br>{this.getBookmarkContent()}<br></br><br></br><br></br></div>

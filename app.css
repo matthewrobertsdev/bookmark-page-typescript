@@ -8,20 +8,12 @@ margin: 2%; color:white;}
 .grid-item{height: "50%"; display: 'inline-block'; text-align: 'center'; border-radius: '10px';
   padding: '3px 11px'; margin-top: '8px';}
   input[type="file"] { display: none; }
-/*.tool-item:hover{color:rgb(22, 13, 1);}*/
 .tool-item-selected{color:rgb(22, 13, 1);}
  .rearrange-button{background-color: rgb(66, 0, 94);}
  .delete-button{background-color: rgb(154, 15, 15)}
  .edit-button{background-color: rgb(9, 87, 9)}
  .add-button{background-color: rgb(160, 88, 0)}
  .more-button{background-color: rgb(106, 94, 0)}
- /*
- .rearrange-button:hover{background-color: rgb(166, 139, 226);}
- .delete-button:hover{background-color: rgb(244, 94, 94)}
- .edit-button:hover{background-color: rgb(53, 240, 53)}
- .add-button:hover{background-color: rgb(226, 157, 72)}
- .more-button:hover{background-color: rgb(235, 216, 75)}
- */
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
@@ -29,7 +21,6 @@ margin: 2%; color:white;}
  .more-button-selected{background-color: rgb(235, 216, 75)}
 .link-button{background-color: aqua; color:rgb(68, 39, 3); text-decoration: none;
     border-radius: 10px;}
-/*.link-button:hover{background-color: rgb(0, 8, 255);color:white;}*/
 .text-on-background{color:white; text-align: center;}
 .heading-color{color:rgb(68, 39, 3)}
 .h3-size{font-size: 18.72px;}
@@ -38,7 +29,7 @@ margin: 2%; color:white;}
 .modal-text-size-2{font-size: 20px}
 .modal-input{font-size: 10px; width: 250px; text-align: center;}
 .modal-small-input{font-size: 10px; width: 100px;text-align: center;}
-.bookmark-grid{/*background-color: rgb(20, 203, 244);*/border: 0.55px; border-style: solid;
+.bookmark-grid{border: 0.55px; border-style: solid;
   color:white;}
 .action-modal{position: relative; width: 300px; height: 300px; background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);
   text-align: center; left: 50%; margin-left: -150px; margin-top: 100px; border-radius: 14px; font-size: 30px;
@@ -47,9 +38,8 @@ margin: 2%; color:white;}
 .delete-check-box{transform: scale(1.5); margin:8px; color:rgb(68, 39, 3); background-color: rgb(68, 39, 3);}
 @media (prefers-color-scheme: light) {
   .action-modal{background-color: rgb(20, 203, 244); color: rgb(68, 39, 3);}
-  .bookmark-grid{/*background-color: rgb(0, 8, 255);*/ color:rgb(68, 39, 3);}
+  .bookmark-grid{ color:rgb(68, 39, 3);}
   .tool-item{color:rgb(22, 13, 1);}
-  /*.tool-item:hover{color:white;}*/
   .tool-bar{background-color: rgb(20, 203, 244); border-bottom: 0.55px solid rgb(68, 39, 3);}
   .link-button{background-color: aqua; color:rgb(68, 39, 3); }
   .heading-color{color:rgb(48, 27, 2)}
@@ -61,14 +51,6 @@ margin: 2%; color:white;}
  .add-button{background-color: rgb(226, 157, 72)}
  .more-button{background-color: rgb(235, 216, 75)}
  .cancel-button{background-color: aqua;}
- /*
- .rearrange-button:hover{background-color: rgb(96, 50, 116);}
- .delete-button:hover{background-color: rgb(154, 58, 58)}
- .edit-button:hover{background-color: rgb(57, 116, 57)}
- .add-button:hover{background-color: rgb(154, 111, 58)}
- .more-button:hover{background-color: rgb(131, 123, 64)}
- .cancel-button:hover{background-color: rgb(0, 8, 255);}
- */
  .rearrange-button-selected{background-color: rgb(96, 50, 116);}
  .delete-button-selected{background-color: rgb(154, 58, 58)}
  .edit-button-selected{background-color: rgb(57, 116, 57)}
@@ -79,28 +61,18 @@ margin: 2%; color:white;}
 }
 @media (prefers-color-scheme: dark) {
   .action-modal{background-color: rgb(15, 0, 116); color: white}
-  .bookmark-grid{/*background-color: rgb(20, 203, 244);*/ color:white;}
+  .bookmark-grid{ color:white;}
   body{background-color:rgb(15, 0, 116)}
   .tool-bar{background-color: rgb(15, 0, 116); border-bottom: 0.55px solid white}
   .link-button{background-color: rgb(0, 8, 255);color:white;}
-  /*.link-button:hover{background-color: aqua;color:rgb(68, 39, 3);}*/
   .heading-color{color:white}
   .text-on-background{color:white}
-  /*.tool-item:hover{color:rgb(22, 13, 1);}*/
  .rearrange-button{background-color: rgb(66, 0, 94);}
  .delete-button{background-color: rgb(154, 15, 15)}
  .edit-button{background-color: rgb(9, 87, 9)}
  .add-button{background-color: rgb(160, 88, 0)}
  .more-button{background-color: rgb(106, 94, 0)}
  .cancel-button{background-color: rgb(0, 8, 255);}
- /*
- .rearrange-button:hover{background-color: rgb(166, 139, 226);}
- .delete-button:hover{background-color: rgb(244, 94, 94)}
- .edit-button:hover{background-color: rgb(53, 240, 53)}
- .add-button:hover{background-color: rgb(226, 157, 72)}
- .more-button:hover{background-color: rgb(235, 216, 75)}
- .cancel-button:hover{background-color: aqua}
- */
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
