@@ -15,13 +15,13 @@ class UnconnectedMoreModal extends React.Component{
       render(){ return (<div>
         <ReactModal className="action-modal" isOpen={this.props.mode==='more'} >
           <h1 className='modal-text-size-2'>More</h1>
-        <button href='' id='downloadButton' className='link-button action-button' onClick={()=>this.handleSaveClick()}>Download as Text File</button>
+        <button href='' id='downloadButton' className='link-button action-button' onClick={()=>this.handleSaveClick()}>Download as JSON Text File</button>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.handleLoadMoreClick()}>
-        Load More</button><input id='loadMoreButton' type="file"/>
+        Load More from JSON Text</button><input id='loadMoreButton' type="file"/>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.handleLoadAndReplaceClick()}>
-        Load and Replace</button><input id='loadAndReplaceButton' type="file"/>
+        Load and Replace from JSON Text</button><input id='loadAndReplaceButton' type="file"/>
         <br></br>
         <button className='link-button action-button' onClick={()=>this.props.setMode('none')}>Done</button>
         <a href='save' id='downloadLink' style={{display: 'none'}}>No Show with CSS</a>
