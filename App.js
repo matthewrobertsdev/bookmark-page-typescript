@@ -32,7 +32,7 @@ class UnconnectedApp extends React.Component {
         window.open('http://google.com/search?q='+this.state.searchText, "_self");
         break;
       case 'duckduckgo':
-        window.open('http://duckduckgo.com/search?q='+this.state.searchText+'&t=h_&ia=web', "_self");
+        window.open('http://duckduckgo.com/?q='+this.state.searchText+'&t=h_&ia=web', "_self");
         break;
       case 'bing':
         window.open('http://bing.com/search?q='+this.state.searchText, "_self");
