@@ -12,6 +12,7 @@ class UnconnectedApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {searchText: '', searchEngine: 'Google'};
+    this.handleSearchEngineChange = this.handleSearchEngineChange.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -25,26 +26,37 @@ class UnconnectedApp extends React.Component {
   }
 
   handleSearch(event) {
-    window.open('http://google.com/search?q='+this.state.searchText, "_self");
+    switch (this.state.searchEngine) {
+      case 'google':
+        window.open('http://google.com/search?q='+this.state.searchText, "_self");
+        break;
+      case 'duckduckgo':
+        window.open('http://duckduckgo.com/search?q='+this.state.searchText+'&t=h_&ia=web', "_self");
+        break;
+      case 'bing':
+        window.open('http://bing.com/search?q='+this.state.searchText, "_self");
+        break;
+      default:
+        console.log("Invalid Search Engine")
+    }
     event.preventDefault();
   }
  
   render(){ return (<div><ToolBar/><EntryModal/><MoreModal/>
       <br></br><br></br><br></br><br></br><br></br><br></br>
       <div className='center'>
-        {/*}
         <select name="searchEngine" id="searchEngine" 
-        className='search-select' value={this.state.searchEngine}>
+        className='search-select' value={this.state.searchEngine} 
+        onChange={this.handleSearchEngineChange}>
           <option value="google">Google</option>
           <option value="duckduckgo">Duck Duck Go</option>
           <option value="bing">Bing</option>
         </select >
-  */}
         <span className='spacer'></span>
         <input class='search-input' tabIndex="1" value={this.state.searchText} 
         onChange={this.handleSearchChange}></input>
         <span className='spacer'></span>
-        <button onClick={this.handleSearch}>Google</button></div>
+        <button tabIndex='2' onClick={this.handleSearch}>Search</button></div>
       <h1 className='text-on-background'>Bookmarks</h1>
       <br></br>{this.getBookmarkContent()}<br></br><br></br><br></br></div>
   );};
