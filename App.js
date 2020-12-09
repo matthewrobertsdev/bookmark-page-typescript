@@ -11,10 +11,11 @@ class UnconnectedApp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {searchText: '', searchEngine: 'google'};
-    this.handleSearchEngineChange = this.handleSearchEngineChange.bind(this);
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    this.state = {searchText: '', searchEngine: 'google'}
+    this.handleSearchEngineChange = this.handleSearchEngineChange.bind(this)
+    this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleKeyDown=this.handleKeyDown.bind(this)
   }
   
   handleSearchChange(event) {
@@ -23,6 +24,12 @@ class UnconnectedApp extends React.Component {
 
   handleSearchEngineChange(event) {
     this.setState({searchEngine: event.target.value});
+  }
+
+  handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      this.handleSearch(event)
+    }
   }
 
   handleSearch(event) {
@@ -55,7 +62,7 @@ class UnconnectedApp extends React.Component {
         </select >
         <span className='spacer'></span>
         <input class='search-input' tabIndex="1" value={this.state.searchText} 
-        onChange={this.handleSearchChange}></input>
+        onChange={this.handleSearchChange} onKeyDown={this.handleKeyDown}></input>
         <span className='spacer'></span>
         <button tabIndex='2' onClick={this.handleSearch}>Search</button></div>
       <h1 className='text-on-background'>Bookmarks</h1>
