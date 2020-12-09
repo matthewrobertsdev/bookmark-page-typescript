@@ -11,7 +11,7 @@ class UnconnectedApp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {searchText: '', searchEngine: 'Google'};
+    this.state = {searchText: '', searchEngine: 'google'};
     this.handleSearchEngineChange = this.handleSearchEngineChange.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -26,6 +26,7 @@ class UnconnectedApp extends React.Component {
   }
 
   handleSearch(event) {
+    console.log('Should search')
     switch (this.state.searchEngine) {
       case 'google':
         window.open('http://google.com/search?q='+this.state.searchText, "_self");
