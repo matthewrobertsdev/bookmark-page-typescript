@@ -1,4 +1,7 @@
 body{background-color:rgb(20, 203, 244); margin-left: 0%; margin-right: 0%;}
+.center{text-align: center}
+.search-input{width: 50%; border-radius: 15px; font-size: 15px; padding: 0px 15px;} 
+.spacer{width: 20px; display: inline-block;}
 .tool-bar{list-style-type: none; margin: 0;padding: 0; width: 100%; display: inline-block;
   text-align: center; position: fixed; background-color: rgb(20, 203, 244); z-index: 100;
 border-bottom: 0.55px solid rgb(68, 39, 3);}
@@ -51,12 +54,12 @@ margin: 2%; color:white;}
  .add-button{background-color: rgb(226, 157, 72)}
  .more-button{background-color: rgb(235, 216, 75)}
  .cancel-button{background-color: aqua;}
- .rearrange-button-selected{background-color: rgb(96, 50, 116);}
- .delete-button-selected{background-color: rgb(154, 58, 58)}
- .edit-button-selected{background-color: rgb(57, 116, 57)}
- .add-button-selected{background-color: rgb(154, 111, 58)}
- .more-button-selected{background-color: rgb(131, 123, 64);}
- .cancel-button-selected{background-color: rgb(0, 8, 255);}
+ .rearrange-button-selected{background-color:  rgb(96, 31, 159);}
+ .delete-button-selected{background-color:  rgb(171, 0, 27)}
+ .edit-button-selected{background-color:rgb(0, 106, 0)}
+ .add-button-selected{background-color: rgb(179, 63, 0)}
+ .more-button-selected{background-color: rgb(189, 134, 9);}
+ .cancel-button-selected{background-color:  rgb(2, 76, 182);}
  .tool-item-selected{color:white;}
 }
 @media (prefers-color-scheme: dark) {
@@ -67,12 +70,12 @@ margin: 2%; color:white;}
   .link-button{background-color: rgb(0, 8, 255);color:white;}
   .heading-color{color:white}
   .text-on-background{color:white}
- .rearrange-button{background-color: rgb(66, 0, 94);}
- .delete-button{background-color: rgb(154, 15, 15)}
- .edit-button{background-color: rgb(9, 87, 9)}
- .add-button{background-color: rgb(160, 88, 0)}
- .more-button{background-color: rgb(106, 94, 0)}
- .cancel-button{background-color: rgb(0, 8, 255);}
+ .rearrange-button{background-color: rgb(96, 31, 159);}
+ .delete-button{background-color: rgb(171, 0, 27)}
+ .edit-button{background-color: rgb(0, 106, 0)}
+ .add-button{background-color: rgb(179, 63, 0)}
+ .more-button{background-color: rgb(189, 134, 9)}
+ .cancel-button{background-color: rgb(2, 76, 182);}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
