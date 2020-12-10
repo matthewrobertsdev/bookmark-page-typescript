@@ -1,6 +1,8 @@
 body{background-color:rgb(20, 203, 244); margin-left: 0%; margin-right: 0%;}
 .center{text-align: center}
-.search-input{width: 50%; border-radius: 15px; font-size: 15px; padding: 0px 15px;} 
+.search-button{border-radius: 15px; font-size: 17.5px; background-color: white;}
+.search-input{width: 50%; border-radius: 15px; font-size: 20px; padding: 5px 15px;}
+.search-select{background-color: white; color: rgb(30, 30, 30);font-size: 17.5px;}
 .spacer{width: 20px; display: inline-block;}
 .tool-bar{list-style-type: none; margin: 0;padding: 0; width: 100%; display: inline-block;
   text-align: center; position: fixed; background-color: rgb(20, 203, 244); z-index: 100;
@@ -63,6 +65,9 @@ margin: 2%; color:white;}
  .tool-item-selected{color:white;}
 }
 @media (prefers-color-scheme: dark) {
+  .search-select{background-color: rgb(30, 30, 30); color: white;}
+  .search-input{background-color: rgb(30, 30, 30); color: white;}
+  .search-button{background-color: rgb(30, 30, 30); color: white;}
   .action-modal{background-color: rgb(15, 0, 116); color: white}
   .bookmark-grid{ color:white;}
   body{background-color:rgb(15, 0, 116)}

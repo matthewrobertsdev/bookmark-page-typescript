@@ -64,7 +64,7 @@ class UnconnectedApp extends React.Component {
         <input class='search-input' tabIndex="1" value={this.state.searchText} 
         onChange={this.handleSearchChange} onKeyDown={this.handleKeyDown}></input>
         <span className='spacer'></span>
-        <button tabIndex='2' onClick={this.handleSearch}>Search</button></div>
+        <button tabIndex='2' onClick={this.handleSearch} className='search-button'>Search</button></div>
       <h1 className='text-on-background'>Bookmarks</h1>
       <br></br>{this.getBookmarkContent()}<br></br><br></br><br></br></div>
   );};
