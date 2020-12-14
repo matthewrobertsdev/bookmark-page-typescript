@@ -9,16 +9,16 @@ body{background-color:rgb(20, 203, 244); margin-left: 0%; margin-right: 0%;}
 border-bottom: 0.55px solid rgb(68, 39, 3);}
 .tool-item{display: inline-block; padding: 4px 12px; text-decoration: none; 
  border: 1.1px; border-style: solid; border-radius: 15px; text-align: center;
-margin: 2%; color:white;}
+margin: 5px 10px; color:white;}
 .grid-item{height: "50%"; display: 'inline-block'; text-align: 'center'; border-radius: '10px';
   padding: '3px 11px'; margin-top: '8px';}
   input[type="file"] { display: none; }
 .tool-item-selected{color:rgb(22, 13, 1);}
- .rearrange-button{background-color: rgb(66, 0, 94);}
- .delete-button{background-color: rgb(154, 15, 15)}
- .edit-button{background-color: rgb(9, 87, 9)}
- .add-button{background-color: rgb(160, 88, 0)}
- .more-button{background-color: rgb(106, 94, 0)}
+ .rearrange-button{background-color: rgb(96, 31, 159);}
+ .delete-button{background-color:  rgb(171, 0, 27)}
+ .edit-button{background-color:rgb(0, 106, 0)}
+ .add-button{background-color: rgb(179, 63, 0)}
+ .more-button{background-color:rgb(226, 157, 72)}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
@@ -60,7 +60,7 @@ margin: 2%; color:white;}
  .delete-button-selected{background-color:  rgb(171, 0, 27)}
  .edit-button-selected{background-color:rgb(0, 106, 0)}
  .add-button-selected{background-color: rgb(179, 63, 0)}
- .more-button-selected{background-color: rgb(189, 134, 9);}
+ .more-button-selected{background-color:rgb(226, 157, 72)}
  .cancel-button-selected{background-color:  rgb(2, 76, 182);}
  .tool-item-selected{color:white;}
 }
@@ -79,7 +79,7 @@ margin: 2%; color:white;}
  .delete-button{background-color: rgb(171, 0, 27)}
  .edit-button{background-color: rgb(0, 106, 0)}
  .add-button{background-color: rgb(179, 63, 0)}
- .more-button{background-color: rgb(189, 134, 9)}
+ .more-button{background-color: rgb(141, 101, 9)}
  .cancel-button{background-color: rgb(2, 76, 182);}
  .rearrange-button-selected{background-color: rgb(166, 139, 226);}
  .delete-button-selected{background-color: rgb(244, 94, 94)}

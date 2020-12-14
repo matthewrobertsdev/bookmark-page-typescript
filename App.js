@@ -51,7 +51,7 @@ class UnconnectedApp extends React.Component {
   }
  
   render(){ return (<div><ToolBar/><EntryModal/><MoreModal/>
-      <br></br><br></br><br></br><br></br><br></br><br></br>
+      <br></br><br></br><br></br><br></br><br></br>
       <div className='center'>
         <select name="searchEngine" id="searchEngine" 
         className='search-select' value={this.state.searchEngine} 
