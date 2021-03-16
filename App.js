@@ -11,7 +11,7 @@ class UnconnectedApp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {searchText: '', searchEngine: 'google'}
+    this.state = {searchText: '', searchEngine: this.getInitialSearchEngine()}
     this.handleSearchEngineChange = this.handleSearchEngineChange.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -24,6 +24,7 @@ class UnconnectedApp extends React.Component {
 
   handleSearchEngineChange(event) {
     this.setState({searchEngine: event.target.value});
+    localStorage.setItem("searchEngine", event.target.value)
   }
 
   handleKeyDown = (event) => {
@@ -33,7 +34,6 @@ class UnconnectedApp extends React.Component {
   }
 
   handleSearch(event) {
-    console.log('Should search')
     switch (this.state.searchEngine) {
       case 'google':
         window.open('https://www.google.com/search?q='+this.state.searchText, "_self");
@@ -74,6 +74,15 @@ class UnconnectedApp extends React.Component {
       return <BookmarkGrid/>
     } else {
       return <h1 className='text-on-background'>Tap or click the "Add" button to add a bookmark</h1>
+    }
+  }
+
+  getInitialSearchEngine(){
+    const searchEngine=localStorage.getItem("searchEngine")
+    if (searchEngine==="google" || searchEngine==="duckduckgo" || searchEngine==="bing"){
+      return searchEngine
+    } else {
+      return "google"
     }
   }
 
