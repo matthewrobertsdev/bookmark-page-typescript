@@ -1,14 +1,27 @@
-import React from 'react';
-import './app.css';
+import React from 'react'
+import './app.css'
 import {setMode, createUncheckedArray, deleteChecked} from './Actions'
-import { connect } from 'react-redux';
-const mapStateToProps = (state) => { return {mode: state.mode, bookmarks: state.bookmarks,
+import { connect } from 'react-redux'
+import LinkModel from './LinkModel'
+interface State {
+  mode: string,
+  bookmarks: LinkModel[],
+  numChecked: number
+}
+interface Props {
+  mode: string,
+  setMode: (mode: string)=>void,
+  numChecked: number,
+  createUncheckedArray: ()=>void,
+  deleteChecked: ()=>void
+}
+const mapStateToProps = (state: State) => { return {mode: state.mode, bookmarks: state.bookmarks,
 numChecked: state.numChecked} };
-const mapDispatchToProps = (dispatch) => {
-    return { setMode: (mode) => { dispatch(setMode(mode)); },
+const mapDispatchToProps = (dispatch: any) => {
+    return { setMode: (mode: string) => { dispatch(setMode(mode)); },
     createUncheckedArray: () => { dispatch(createUncheckedArray()); },
     deleteChecked: () => { dispatch(deleteChecked());} }};
-class UnconnectedToolBar extends React.Component{
+class UnconnectedToolBar extends React.Component<Props, State>{
 
     render(){return (
         <ul className='tool-bar'>

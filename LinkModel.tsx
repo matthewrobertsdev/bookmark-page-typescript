@@ -1,7 +1,7 @@
 class LinkModel{
-    name
-    URL
-    constructor(name, URL){
+    name: string
+    URL: string
+    constructor(name: string, URL: string){
         this.name=name;
         this.URL=URL;
     }
