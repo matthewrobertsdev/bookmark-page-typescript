@@ -1,25 +1,32 @@
-const initialState = { bookmarks: getSavedBookmarks(), mode: 'none', checkedArray: [], numChecked: 0,
+import LinkModel from "./LinkModel";
+interface Action{
+  type: string,
+  payload: any
+}
+const initialState = { bookmarks: getSavedBookmarks(), mode: 'none', checkedArray: [] as boolean[], numChecked: 0,
 updateingBookmark: null, needsPassBookmark: false, updatingURL: '', updatingName: '', updatingIndex: null};
 
-const bookmarkReducer = (state = initialState, action) => {
+const bookmarkReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case 'SET_UPDATING_NAME':
-                return { ...state, updatingName: action.name}
+                return { ...state, updatingName: action.payload}
         case 'SET_UPDATING_URL':
-                return { ...state, updatingURL: action.URL}
+                return { ...state, updatingURL: action.payload}
         case 'SET_MODE':
-            return { ...state, mode: action.mode };
+            return { ...state, mode: action.payload };
         case 'SET_BOOKMARKS':
-            var validatedBookmarks=validateBookmarks(action.bookmarks);
+            var validatedBookmarks=validateBookmarks(action.payload);
             saveBookmarks(validatedBookmarks);
             return { ...state, bookmarks: validatedBookmarks }
         case 'ADD_BOOKMARK':
+          console.log("hello")
             let newBookmarks=[]
             if (state.bookmarks!==null){
                 newBookmarks = state.bookmarks.slice(0);
-                newBookmarks.unshift(action.bookmark);
+                newBookmarks.unshift(action.payload);
+                console.log(newBookmarks)
             } else {
-                newBookmarks=[action.bookmark]
+                newBookmarks=[action.payload]
             }
             saveBookmarks(newBookmarks);
             return { ...state, bookmarks: newBookmarks }
@@ -31,7 +38,7 @@ const bookmarkReducer = (state = initialState, action) => {
             return { ...state, checkedArray: checkedArray, numChecked: 0}
         case 'TOGGLED_CHECKED_STATE':
             let newCheckedState = state.checkedArray.slice(0);
-            newCheckedState[action.index] = !newCheckedState[action.index]
+            newCheckedState[action.payload] = !newCheckedState[action.payload]
             let numChecked = 0;
             for (let i = 0; i < newCheckedState.length; i++) {
                 if (newCheckedState[i]) {
@@ -49,14 +56,14 @@ const bookmarkReducer = (state = initialState, action) => {
             saveBookmarks(keptBookmarks);
             return { ...state, bookmarks: keptBookmarks, numChecked: 0 }
         case 'SET_UPDATING_INDEX':
-                return {...state, index: action.index}
+                return {...state, index: action.payload}
         case 'UPDATE_BOOKMARK':
                 let updatedBookmarks=state.bookmarks
-                updatedBookmarks[action.index]=action.bookmark
+                updatedBookmarks[action.payload.index]=action.payload.bookmark
                 saveBookmarks(updatedBookmarks);
                 return { ...state, bookmarks: updatedBookmarks}
         case 'APPEND_BOOKMARKS':
-                let withAppend=state.bookmarks.concat(validateBookmarks(action.bookmarks));
+                let withAppend=state.bookmarks.concat(validateBookmarks(action.payload));
                 saveBookmarks(withAppend);
                 return { ...state, bookmarks: withAppend}
         default:
@@ -65,7 +72,7 @@ const bookmarkReducer = (state = initialState, action) => {
 
 }
 
-export const validateBookmarks=function validateBookmarks(bookmarks){
+export const validateBookmarks=function validateBookmarks(bookmarks: LinkModel[]){
     var validatedBookmarks=[];
     for(let i=0; i<bookmarks.length; i++){
         if (bookmarks[i].name&&bookmarks[i].name!==null&&bookmarks[i].name!==undefined&&bookmarks[i].name!==''
@@ -76,14 +83,18 @@ export const validateBookmarks=function validateBookmarks(bookmarks){
     return validatedBookmarks;
 }
 
-export const saveBookmarks=function saveBookmarks(bookmarks) {
+export const saveBookmarks=function saveBookmarks(bookmarks: LinkModel[]) {
     localStorage.setItem('savedBookmarks', JSON.stringify(bookmarks))
 }
 
 function getSavedBookmarks() {
     if (localStorage.getItem('savedBookmarks') !== null&&localStorage.getItem('savedBookmarks')!==undefined) {
         try{
-            return JSON.parse(localStorage.getItem('savedBookmarks'));
+          let savedBookmarks=localStorage.getItem('savedBookmarks')
+          if (savedBookmarks==null) {
+            savedBookmarks=""
+          }
+            return JSON.parse(savedBookmarks);
         } catch(e){
             return [];
         }

@@ -1,12 +1,19 @@
-import React, { AnchorHTMLAttributes } from 'react';
+import React from 'react';
 import './app.css';
 import ReactModal from 'react-modal';
 import {setMode, appendBookmarks, setBookmarks} from './Actions'
 import { connect } from 'react-redux';
 import LinkModel from './LinkModel';
 interface State {
-  mode: string
+  mode: string,
   bookmarks: LinkModel[]
+}
+interface Props {
+  bookmarks: LinkModel[],
+  mode: string,
+  setMode: (mode: string)=>void
+  appendBookmarks: (bookmarks: LinkModel[]) => void
+  setBookmarks: (bookmarks: LinkModel[]) => void
 }
 const mapStateToProps = (state: State) => { return {mode: state.mode, bookmarks: state.bookmarks}};
 const mapDispatchToProps = (dispatch: any) => {
@@ -32,17 +39,17 @@ class UnconnectedMoreModal extends React.Component<Props, State>{
         </ReactModal></div>
     );};
 
-    handleFileChosen(append: LinkModel[], props){
+    handleFileChosen(append: boolean, props: Props){
       let reader = new FileReader();
       let file=null;
       if(append){
         let loadMoreInput=document.getElementById('loadMoreButton') as HTMLInputElement
         if (loadMoreInput!==null) {
-          file = loadMoreInput.files[0] as Blob;
+          file = loadMoreInput.files![0] as Blob;
         }
       } else {
         let loadAndReplaceInput=document.getElementById('loadAndReplaceButton') as HTMLInputElement
-          file = loadAndReplaceInput.files[0];
+          file = loadAndReplaceInput.files![0];
       }
       reader.addEventListener("loadend", function() {
         let bookmarks=JSON.parse(reader.result as string);
@@ -52,7 +59,7 @@ class UnconnectedMoreModal extends React.Component<Props, State>{
           props.setBookmarks(bookmarks);
         }
       });
-      reader.readAsText(file);
+      reader.readAsText(file!);
     }
 
     handleSaveClick(){
@@ -64,13 +71,15 @@ class UnconnectedMoreModal extends React.Component<Props, State>{
     }
 
     handleLoadMoreClick(){
-      document.getElementById('loadMoreButton').addEventListener('change', ()=>this.handleFileChosen(true, this.props));
-      document.getElementById('loadMoreButton').click();
+      let loadMoreButton=document.getElementById('loadMoreButton') as HTMLButtonElement
+      loadMoreButton.addEventListener('change', ()=>this.handleFileChosen(true, this.props));
+      loadMoreButton.click();
     }
 
     handleLoadAndReplaceClick(){
-      document.getElementById('loadAndReplaceButton').addEventListener('change', ()=>this.handleFileChosen(false, this.props));
-      document.getElementById('loadAndReplaceButton').click();
+      let loadAndReplaceButton=document.getElementById('loadAndReplaceButton') as HTMLButtonElement
+      loadAndReplaceButton.addEventListener('change', ()=>this.handleFileChosen(false, this.props));
+      loadAndReplaceButton.click();
     }
 
 }

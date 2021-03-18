@@ -1,24 +1,34 @@
+import LinkModel from "./LinkModel";
 
-export const setMode = (mode) => ({ type: 'SET_MODE', mode });
+export class BookmarkUpdateInfo {
+  index: number
+  bookmark: LinkModel
+  constructor(index: number, bookmark: LinkModel) {
+    this.index=index
+    this.bookmark=bookmark
+  }
+}
 
-export const setBookmarks = (bookmarks) => ({ type: 'SET_BOOKMARKS', bookmarks });
+export const setMode = (payload: string) => ({ type: 'SET_MODE', payload });
 
-export const addBookmark = (bookmark) => ({ type: 'ADD_BOOKMARK', bookmark });
+export const setBookmarks = (payload: LinkModel[]) => ({ type: 'SET_BOOKMARKS', payload });
 
-export const createUncheckedArray = () => ({ type: 'CREATE_UNCHECKED_ARRAY' });
+export const addBookmark = (payload: LinkModel) => ({ type: 'ADD_BOOKMARK', payload });
 
-export const toggleCheckedState = (index) => ({ type: 'TOGGLED_CHECKED_STATE', index });
+export const createUncheckedArray = (payload: any) => ({ type: 'CREATE_UNCHECKED_ARRAY', payload});
 
-export const deleteChecked = () => ({ type: 'DELETE_CHECKED'});
+export const toggleCheckedState = (payload: number) => ({ type: 'TOGGLED_CHECKED_STATE', payload });
 
-export const setUpdatingName = (name) => ({ type: 'SET_UPDATING_NAME', name});
+export const deleteChecked = (payload: any) => ({ type: 'DELETE_CHECKED', payload});
 
-export const setUpdatingURL = (URL) => ({ type: 'SET_UPDATING_URL', URL});
+export const setUpdatingName = (payload: string) => ({ type: 'SET_UPDATING_NAME', payload});
 
-export const setUpdatingIndex = (index) => ({ type: 'SET_UPDATING_INDEX', index});
+export const setUpdatingURL = (payload: string) => ({ type: 'SET_UPDATING_URL', payload});
 
-export const updateBookmark = (index, bookmark) => ({ type: 'UPDATE_BOOKMARK', index, bookmark});
+export const setUpdatingIndex = (payload: number) => ({ type: 'SET_UPDATING_INDEX', payload});
 
-export const appendBookmarks = (bookmarks) => ({ type: 'APPEND_BOOKMARKS', bookmarks});
+export const updateBookmark = (payload: BookmarkUpdateInfo) => ({ type: 'UPDATE_BOOKMARK', payload});
+
+export const appendBookmarks = (payload: LinkModel[]) => ({ type: 'APPEND_BOOKMARKS', payload});
 
 

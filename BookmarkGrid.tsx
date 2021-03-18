@@ -7,29 +7,46 @@ import {
     setUpdatingURL
 } from './Actions'
 import { saveBookmarks } from './BookmarkReducer';
-
-const mapStateToProps = (state) => {
+import LinkModel from './LinkModel';
+interface State {
+  bookmarks: LinkModel[],
+  mode: string,
+  checkedArray: boolean[],
+  numColumns: number
+}
+interface Props {
+  bookmarks: LinkModel[],
+  setBookmarks: (nextState: LinkModel[])=>void,
+  mode: string,
+  setMode: (mode: string)=>void,
+  checkedArray: boolean[],
+  toggleCheckedState: (index: number)=>void,
+  setUpdatingIndex: (index: number)=>void,
+  setUpdatingName: (updatingName: string)=>void
+  setUpdatingURL: (updatingURL: string)=>void
+}
+const mapStateToProps = (state: State) => {
     return {
         bookmarks: state.bookmarks, mode: state.mode,
         checkedArray: state.checkedArray
     }
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        setBookmarks: (bookmarks) => { dispatch(setBookmarks(bookmarks)); },
-        toggleCheckedState: (index) => { dispatch(toggleCheckedState(index)); },
-        setMode: (mode) => { dispatch(setMode(mode)); },
-        setUpdatingIndex: (index) => { dispatch(setUpdatingIndex(index)) },
-        setUpdatingName: (name) => { dispatch(setUpdatingName(name)); },
-        setUpdatingURL: (URL) => { dispatch(setUpdatingURL(URL)) }
+        setBookmarks: (bookmarks: LinkModel[]) => { dispatch(setBookmarks(bookmarks)); },
+        toggleCheckedState: (index: number) => { dispatch(toggleCheckedState(index)); },
+        setMode: (mode: string) => { dispatch(setMode(mode)); },
+        setUpdatingIndex: (index: number) => { dispatch(setUpdatingIndex(index)) },
+        setUpdatingName: (name: string) => { dispatch(setUpdatingName(name)); },
+        setUpdatingURL: (URL: string) => { dispatch(setUpdatingURL(URL)) }
     }
 };
-class UnconnectedBookmarkGrid extends React.Component {
+class UnconnectedBookmarkGrid extends React.Component<Props, State> {
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
         this.changeIndices = this.changeIndices.bind(this);
-        this.state={numColumns: Math.floor(window.innerWidth/400)+1};
+        this.state={...this.state, numColumns: Math.floor(window.innerWidth/400)+1};
         this.resizeFunction=this.resizeFunction.bind(this);
         window.addEventListener('resize', this.resizeFunction);
     }
@@ -42,14 +59,14 @@ class UnconnectedBookmarkGrid extends React.Component {
     }
 
     // target id will only be set if dragging from one dropzone to another.
-    changeIndices(sourceId, sourceIndex, targetIndex, targetId) {
+    changeIndices(sourceId: string, sourceIndex: number, targetIndex: number, targetId?: string) {
         const nextState = swap(this.props.bookmarks, sourceIndex, targetIndex);
         this.props.setBookmarks(nextState);
         saveBookmarks(nextState);
     }
 
     render() {
-        return (<GridContextProvider onChange={this.changeIndices} style={{ cursor: 'default', marginLeft: '0px', marginRight: '0px' }}>
+        return (<GridContextProvider onChange={this.changeIndices}>
             <GridDropZone id="items" boxesPerRow={this.state.numColumns} rowHeight={40}
                 style={{
                     height: this.getHeightString(), width: '80%', touchAction: this.getTouchActionString(), cursor: 'default',
@@ -62,7 +79,7 @@ class UnconnectedBookmarkGrid extends React.Component {
     }
 
     getBookmarkGrid() {
-        return this.props.bookmarks.map((item, index) => {
+        return this.props.bookmarks.map((item: LinkModel, index: number) => {
             if (this.props.mode === 'rearrange') {
                 return <GridItem key={index}>
                     <label style={this.getGridItemStyleObject('none', 'default')}
@@ -110,28 +127,29 @@ class UnconnectedBookmarkGrid extends React.Component {
         return this.props.mode === 'rearrange'
     }
 
-    addForDelete(index) {
+    addForDelete(index: number) {
         if (this.props.mode === 'delete') {
             return <input type='checkbox' checked={this.props.checkedArray[index]}
                 onChange={() => this.props.toggleCheckedState(index)} className='delete-check-box'></input>
         }
     }
 
-    updateBookmark(index, bookmark) {
+    updateBookmark(index: number, bookmark: LinkModel) {
         this.props.setMode('update');
         this.props.setUpdatingIndex(index);
         this.props.setUpdatingName(bookmark.name);
         this.props.setUpdatingURL(bookmark.URL);
     }
 
-    getGridItemStyleObject(touchAction, pointer) {
+    getGridItemStyleObject(touchAction: string, pointer: string){
         return {
             height: "50%", display: 'inline-block', touchAction: touchAction,
-            cursor: pointer, textAlign: 'center', borderRadius: '10px',
-            padding: '3px 11px', marginTop: '8px'
+            cursor: pointer, borderRadius: '10px', padding: '3px 11px', marginTop: '8px'
         }
     }
 
 }
 const BookmarkGrid = connect(mapStateToProps, mapDispatchToProps)(UnconnectedBookmarkGrid)
 export default BookmarkGrid;
+
+//style={{ cursor: 'default', marginLeft: '0px', marginRight: '0px' }}

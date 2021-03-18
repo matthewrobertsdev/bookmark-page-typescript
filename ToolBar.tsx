@@ -19,8 +19,8 @@ const mapStateToProps = (state: State) => { return {mode: state.mode, bookmarks:
 numChecked: state.numChecked} };
 const mapDispatchToProps = (dispatch: any) => {
     return { setMode: (mode: string) => { dispatch(setMode(mode)); },
-    createUncheckedArray: () => { dispatch(createUncheckedArray()); },
-    deleteChecked: () => { dispatch(deleteChecked());} }};
+    createUncheckedArray: () => { dispatch(createUncheckedArray('')); },
+    deleteChecked: () => { dispatch(deleteChecked(''));} }};
 class UnconnectedToolBar extends React.Component<Props, State>{
 
     render(){return (

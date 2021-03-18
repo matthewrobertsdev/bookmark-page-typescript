@@ -1,23 +1,41 @@
 import React from 'react';
 import './app.css';
 import ReactModal from 'react-modal';
-import {setMode, addBookmark, setUpdatingName, setUpdatingURL, updateBookmark} from './Actions'
+import {setMode, addBookmark, setUpdatingName, setUpdatingURL, updateBookmark, BookmarkUpdateInfo} from './Actions'
 import { connect } from 'react-redux';
 import LinkModel from './LinkModel';
-
-const mapStateToProps = (state) => { return {mode: state.mode,
+interface State {
+  mode: string,
+  updatingName: string,
+  index: number,
+  updatingURL: string,
+  updateBookmark: LinkModel,
+  bookmarks: LinkModel[]
+}
+interface Props {
+  mode: string,
+  setMode: (mode: string) => void,
+  updatingName: string,
+  setUpdatingName: (name: string) => void,
+  updatingURL: string,
+  setUpdatingURL: (name: string) => void,
+  addBookmark: (bookmark: LinkModel) => void,
+  index: number,
+  updateBookmark: (index: number, bookmark: LinkModel) => void
+}
+const mapStateToProps = (state: State) => { return {mode: state.mode,
   updatingURL: state.updatingURL, updatingName: state.updatingName, index: state.index,
   updateBookmark: state.updateBookmark, bookmarks: state.bookmarks}};
-const mapDispatchToProps = (dispatch) => {
- return { setMode: (mode) => { dispatch(setMode(mode)); },
-  addBookmark: (bookmark) => { dispatch(addBookmark(bookmark)); },
-  setUpdatingName:(name)=>{dispatch(setUpdatingName(name)); },
-  setUpdatingURL:(URL)=>{dispatch(setUpdatingURL(URL)); },
-  updateBookmark:(index, bookmark)=>{dispatch(updateBookmark(index, bookmark)); }}}
+const mapDispatchToProps = (dispatch: any) => {
+ return { setMode: (mode: string) => { dispatch(setMode(mode)); },
+  addBookmark: (bookmark: LinkModel) => { dispatch(addBookmark(bookmark)); },
+  setUpdatingName:(name: string)=>{dispatch(setUpdatingName(name)); },
+  setUpdatingURL:(URL: string)=>{dispatch(setUpdatingURL(URL)); },
+  updateBookmark:(index: number, bookmark: LinkModel)=>{dispatch(updateBookmark(new BookmarkUpdateInfo(index, bookmark))); }}}
  ReactModal.setAppElement('#root');
-class UnconnectedEntryModal extends React.Component{
+class UnconnectedEntryModal extends React.Component<Props, State>{
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
     
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -25,7 +43,7 @@ class UnconnectedEntryModal extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
       }
     
-      handleNameChange(event) {
+      handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
           this.props.setUpdatingName(event.target.value);
       }
 
@@ -34,7 +52,7 @@ class UnconnectedEntryModal extends React.Component{
         this.props.setUpdatingURL('');
       }
     
-      handleURLChange(event) {
+      handleURLChange(event: React.ChangeEvent<HTMLInputElement>) {
         this.props.setUpdatingURL(event.target.value)
       }
     
