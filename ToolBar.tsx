@@ -24,19 +24,20 @@ const mapDispatchToProps = (dispatch: any) => {
 class UnconnectedToolBar extends React.Component<Props, State>{
 
     render(){return (
-        <ul className='tool-bar'>
-        <li className={'tool-item '+this.getRearrangeButtonColorStyle()}
-        onClick={()=>this.toggleRearrangeMode()}>Rearrange</li>
-        <li className={'tool-item '+this.getDeleteButtonColorStyle()}
-        onClick={()=>this.handleDeleteClick()}>{this.getDeleteString()}</li>
+        <nav className='tool-bar'>
+        <button className={'tool-item '+this.getRearrangeButtonColorStyle()}
+        onClick={()=>this.toggleRearrangeMode()}>Rearrange</button>
+        <button className={'tool-item '+this.getDeleteButtonColorStyle()}
+        onClick={()=>this.handleDeleteClick()}>{this.getDeleteString()}</button>
         {this.addCancelButton()}
-        <li className={'tool-item '+this.getEditButtonColorStyle()} 
-        onClick={()=>this.handleEditClicked()}>Edit</li>
-        <li className={'tool-item '+this.getAddButtonColorStyle()} 
-        onClick={()=>this.toggleAddMode()}>Add</li>
-        <li className={'tool-item '+this.getMoreButtonColorStyle()} 
-        onClick={()=>this.toggleMoreMode()}>More</li>
-        </ul>);};
+        <button className={'tool-item '+this.getEditButtonColorStyle()} 
+        onClick={()=>this.handleEditClicked()}>Edit</button>
+        <button className={'tool-item '+this.getAddButtonColorStyle()} 
+        onClick={()=>this.toggleAddMode()}>Add</button>
+        <button className={'tool-item '+this.getMoreButtonColorStyle()} 
+        onClick={()=>this.toggleMoreMode()}>More</button>
+        </nav>
+        );};
 
     getAddButtonColorStyle(){
         return this.props.mode==='add' ? 'tool-item-selected add-button-selected':'add-button';

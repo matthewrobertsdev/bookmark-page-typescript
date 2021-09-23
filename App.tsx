@@ -58,7 +58,7 @@ class UnconnectedApp extends React.Component<Props, State> {
     event.preventDefault();
   }
  
-  render(){ return (<div><ToolBar/><EntryModal/><MoreModal/>
+  render(){ return (<><ToolBar/><EntryModal/><MoreModal/>
       <br></br><br></br><br></br><br></br><br></br>
       <div className='center'>
         <select name="searchEngine" id="searchEngine" 
@@ -74,7 +74,7 @@ class UnconnectedApp extends React.Component<Props, State> {
         <span className='spacer'></span>
         <button tabIndex={2} onClick={this.handleSearch} className='search-button'>Search</button></div>
       <h1 className='text-on-background'>Bookmarks</h1>
-      <br></br>{this.getBookmarkContent()}<br></br><br></br><br></br></div>
+      <br></br>{this.getBookmarkContent()}<br></br><br></br><br></br></>
   );};
 
   getBookmarkContent(){
