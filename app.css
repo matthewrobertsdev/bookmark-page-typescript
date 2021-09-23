@@ -85,7 +85,7 @@ margin: 5px 10px; color:white; font-size: 12pt}
  .delete-button-selected{background-color: rgb(244, 94, 94)}
  .edit-button-selected{background-color: rgb(53, 240, 53)}
  .add-button-selected{background-color: rgb(226, 157, 72)}
- .more-button-selected{background-color: rgb(235, 216, 75)}
+ .more-button-selected{background-color: rgb(176, 127, 67)}
  .cancel-button-selected{background-color: rgb(0, 8, 255);}
  .tool-item-selected{color:rgb(22, 13, 1);}
 }
